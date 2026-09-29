@@ -1,2 +1,4 @@
-public class Coisa {
+public class Coisa
+
+{
 }
