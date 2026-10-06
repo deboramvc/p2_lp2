@@ -1,8 +1,7 @@
 package P2_LP2;
 
     public class RegistroResumos {
-
-         private String[] temas;
+        private String[] temas;
         private String[] conteudos;
         private int quantidade;
         private int proximo;
@@ -65,4 +64,4 @@ package P2_LP2;
             return false;
         }
     }
-}
+

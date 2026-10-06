@@ -1,7 +1,6 @@
 package P2_LP2;
 
 public class Disciplina {
-
     private double nota1;
     private double nota2;
     private double nota3;
@@ -32,6 +31,7 @@ public class Disciplina {
         } else if (nota == 4){
             this.nota4 = valorNota;
         }
+        // aqui se vc usar um array fica melhor para evitar esses if
     }
 
     public boolean aprovado(){
@@ -45,7 +45,8 @@ public class Disciplina {
     public String toString(){
         double media = (nota1 + nota2 + nota3 + nota4) / 4;
         return nomeDisciplina + " " + numeroHorasEstudo + " " + media + " " +
-                "[" + " " + nota1 + " " + nota2 + " " + nota3 + " " + nota4 + " "
+                "[" + " " + nota1 + ", " + nota2 + ", " + nota3 + ", " + nota4 + " "
                 + "]";
+        //aqui compensa vc botar , entre as notas pq na saída ta com ,
     }
 }

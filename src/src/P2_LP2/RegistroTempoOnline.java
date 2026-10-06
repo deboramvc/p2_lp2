@@ -1,8 +1,6 @@
 package P2_LP2;
 
 public class RegistroTempoOnline {
-    // para uma disciplina  de x horas, o usuario deve dedicar o dobro
-
     private String nomeDisciplina;
     private int tempoOnline;
     private int tempoOnlineEsperado;
