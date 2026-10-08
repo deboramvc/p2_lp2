@@ -1,6 +1,9 @@
 package P2_LP2;
 
-    public class RegistroResumos {
+import java.util.List;
+import java.util.Locale;
+
+public class RegistroResumos {
         private String[] temas;
         private String[] conteudos;
         private int quantidade;
@@ -55,7 +58,6 @@ package P2_LP2;
         }
 
         public boolean temResumo(String tema) {
-
             for (int i = 0; i < quantidade; i++) {
                 if (temas[i].equals(tema)) {
                     return true;
@@ -63,5 +65,28 @@ package P2_LP2;
             }
             return false;
         }
-    }
 
+        public String[] busca(String chaveDeBusca){
+
+            String chave = chaveDeBusca.toLowerCase();
+            String[] resultado = new String[quantidade];
+            int contador = 0;
+
+            for (int i = 0; i < this.quantidade; i ++) {
+
+                if (conteudos[i].toLowerCase().contains(chave)) {
+                    resultado[contador] = temas[i];
+                    contador++;
+                }
+            }
+
+            String[] resposta = new String[contador];
+
+            for (int i = 0; i < contador; i++){
+                resposta[i] = resultado[i];
+            }
+
+            java.util.Arrays.sort(resposta);
+            return resposta;
+        }
+    }

@@ -7,6 +7,11 @@ public class Disciplina {
     private double nota4;
     private String nomeDisciplina;
     private int numeroHorasEstudo;
+    private int numeroDeNotas;
+    private int[] pesos;
+    private double mediaPonderada;
+
+    // fazer um array das novas com até então, tamanho 4, até ser especificada quantas notas existem
 
     public Disciplina(String nomeDisciplina){
         this.nomeDisciplina = nomeDisciplina;
@@ -15,6 +20,13 @@ public class Disciplina {
         this.nota2 = 0;
         this.nota3 = 0;
         this.nota4 = 0;
+    }
+
+    public Disciplina(int qtdeDeNotas){
+        this.numeroDeNotas = qtdeDeNotas;
+    }
+
+    public Disciplina(String nomeDisciplina, int numeroDeNotas, int[] pesos){
     }
 
     public void cadastraHoras(int horas){
@@ -49,4 +61,6 @@ public class Disciplina {
                 + "]";
         //aqui compensa vc botar , entre as notas pq na saída ta com ,
     }
+
+
 }
