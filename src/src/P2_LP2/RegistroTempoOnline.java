@@ -24,6 +24,7 @@ public class RegistroTempoOnline {
     public boolean atingiuMetaTempoOnline() {
         return tempoOnline >= tempoOnlineEsperado;
     }
+
     public String toString() {
         return nomeDisciplina + " " + tempoOnline + "/" + tempoOnlineEsperado;
     }

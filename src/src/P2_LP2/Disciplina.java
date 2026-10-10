@@ -1,32 +1,37 @@
 package P2_LP2;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Disciplina {
-    private double nota1;
-    private double nota2;
-    private double nota3;
-    private double nota4;
     private String nomeDisciplina;
     private int numeroHorasEstudo;
-    private int numeroDeNotas;
+    private double[] notas;
     private int[] pesos;
-    private double mediaPonderada;
+    private boolean usaMediaPonderada;
 
-    // fazer um array das novas com até então, tamanho 4, até ser especificada quantas notas existem
-
-    public Disciplina(String nomeDisciplina){
+    public Disciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
         this.numeroHorasEstudo = 0;
-        this.nota1 = 0;
-        this.nota2 = 0;
-        this.nota3 = 0;
-        this.nota4 = 0;
+        this.notas = new double[4];
+        this.pesos = null;
+        this.usaMediaPonderada = false;
     }
 
-    public Disciplina(int qtdeDeNotas){
-        this.numeroDeNotas = qtdeDeNotas;
+    public Disciplina(String nomeDisciplina, int qtdeDeNotas){
+        this.nomeDisciplina = nomeDisciplina;
+        this.numeroHorasEstudo = 0;
+        this.notas = new double[qtdeDeNotas];
+        this.pesos = null;
+        this.usaMediaPonderada = false;
     }
 
     public Disciplina(String nomeDisciplina, int numeroDeNotas, int[] pesos){
+        this.nomeDisciplina = nomeDisciplina;
+        this.numeroHorasEstudo = 0;
+        this.notas = new double[numeroDeNotas];
+        this.pesos = pesos;
+        this.usaMediaPonderada = true;
     }
 
     public void cadastraHoras(int horas){
@@ -34,33 +39,43 @@ public class Disciplina {
     }
 
     public void cadastraNota(int nota, double valorNota){
-        if (nota == 1){
-            this.nota1 = valorNota;
-        } else if (nota == 2){
-            this.nota2 = valorNota;
-        } else if (nota == 3){
-            this.nota3 = valorNota;
-        } else if (nota == 4){
-            this.nota4 = valorNota;
+        if (nota >= 1 && nota <= notas.length) {
+            notas[nota-1] = valorNota;
         }
-        // aqui se vc usar um array fica melhor para evitar esses if
+    }
+
+    public double calculaMedia() {
+        double somaNotas = 0;
+        int somaPesos = 0;
+
+        if (usaMediaPonderada) {
+            for (int i = 0; i < this.notas.length; i++) {
+                somaNotas += notas[i] * pesos[i];
+                somaPesos += pesos[i];
+            }
+        } else if (!usaMediaPonderada) {
+            for (int i = 0; i < this.notas.length; i++) {
+                somaNotas += notas[i];
+            }
+            return somaNotas / notas.length;
+        }
+        if (somaPesos == 0){
+            return 0.0;
+        }
+        return somaNotas / somaPesos;
     }
 
     public boolean aprovado(){
-        double media = (nota1 + nota2 + nota3 + nota4) / 4;
-        if (media >= 7) {
+        double media = calculaMedia();
+        if (media>= 7.0){
             return true;
         }
         return false;
     }
 
     public String toString(){
-        double media = (nota1 + nota2 + nota3 + nota4) / 4;
-        return nomeDisciplina + " " + numeroHorasEstudo + " " + media + " " +
-                "[" + " " + nota1 + ", " + nota2 + ", " + nota3 + ", " + nota4 + " "
-                + "]";
-        //aqui compensa vc botar , entre as notas pq na saída ta com ,
+        double media = calculaMedia();
+        return nomeDisciplina + " " + numeroHorasEstudo + " " +
+                media + " " + Arrays.toString(this.notas);
     }
-
-
 }

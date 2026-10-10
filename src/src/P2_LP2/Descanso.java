@@ -4,11 +4,16 @@ public class Descanso {
     private int horasDescanso;
     private int numeroSemanas;
 
+    public Descanso(){
+        this.horasDescanso = 0;
+        this.numeroSemanas = 0;
+    }
+
     public void defineHorasDescanso(int valor) {
         horasDescanso = valor;
     }
 
-    public void defineNumeroSemanas(int valor){
+    public void defineNumeroSemanas(int valor) {
         numeroSemanas = valor;
     }
 

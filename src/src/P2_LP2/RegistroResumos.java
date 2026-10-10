@@ -6,13 +6,13 @@ import java.util.Locale;
 public class RegistroResumos {
         private String[] temas;
         private String[] conteudos;
-        private int quantidade;
+        private int quantidadeResumosExistentes;
         private int proximo;
 
         public RegistroResumos(int numeroDeResumos) {
             temas = new String[numeroDeResumos];
             conteudos = new String[numeroDeResumos];
-            quantidade = 0;
+            quantidadeResumosExistentes = 0;
             proximo = 0;
         }
 
@@ -21,11 +21,16 @@ public class RegistroResumos {
             if (temResumo(tema)) {
                 return;
             }
+
             temas[proximo] = tema;
             conteudos[proximo] = conteudo;
-            if (quantidade < temas.length) {
-                quantidade++;
+
+            // Verifica a quantidade de resumos que já foram adicionados, se está com a capacidade máxima do Array
+            if (quantidadeResumosExistentes < temas.length) {
+                quantidadeResumosExistentes++;
             }
+
+            // Indica o indice, onde o proximo tema será inserido no Array, zera se chegar ao seu máx
             proximo++;
             if (proximo == temas.length) {
                 proximo = 0;
@@ -33,20 +38,20 @@ public class RegistroResumos {
         }
 
         public String[] pegaResumos() {
-            String[] resumos = new String[quantidade];
-            for (int i = 0; i < quantidade; i++) {
+            String[] resumos = new String[quantidadeResumosExistentes];
+            for (int i = 0; i < quantidadeResumosExistentes; i++) {
                 resumos[i] = temas[i] + ": " + conteudos[i];
             }
             return resumos;
         }
 
         public String imprimeResumos() {
-            String resultado = "- " + quantidade + " resumo(s) cadastrado(s)\n";
+            String resultado = "- " + quantidadeResumosExistentes + " resumo(s) cadastrado(s)\n";
             resultado += "- ";
-            for (int i = 0; i < quantidade; i++) {
+            for (int i = 0; i < quantidadeResumosExistentes; i++) {
                 resultado += temas[i];
 
-                if (i < quantidade - 1) {
+                if (i < quantidadeResumosExistentes - 1) {
                     resultado += " | ";
                 }
             }
@@ -54,11 +59,11 @@ public class RegistroResumos {
         }
 
         public int conta() {
-            return quantidade;
+            return quantidadeResumosExistentes;
         }
 
         public boolean temResumo(String tema) {
-            for (int i = 0; i < quantidade; i++) {
+            for (int i = 0; i < quantidadeResumosExistentes; i++) {
                 if (temas[i].equals(tema)) {
                     return true;
                 }
@@ -69,10 +74,10 @@ public class RegistroResumos {
         public String[] busca(String chaveDeBusca){
 
             String chave = chaveDeBusca.toLowerCase();
-            String[] resultado = new String[quantidade];
+            String[] resultado = new String[quantidadeResumosExistentes];
             int contador = 0;
 
-            for (int i = 0; i < this.quantidade; i ++) {
+            for (int i = 0; i < this.quantidadeResumosExistentes; i ++) {
 
                 if (conteudos[i].toLowerCase().contains(chave)) {
                     resultado[contador] = temas[i];
