@@ -46,7 +46,7 @@ public class RegistroResumos {
             quantidadeResumosExistentes++;
         }
 
-        // Indica o indice, onde o próximo tema será inserido no Array, zera se chegar ao seu máx.
+        // Indica o indice, onde o proximo tema será inserido no Array, zera se chegar ao seu máx.
         proximo++;
         if (proximo == temas.length) {
             proximo = 0;

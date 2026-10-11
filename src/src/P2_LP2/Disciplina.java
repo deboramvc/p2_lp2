@@ -80,7 +80,7 @@ public class Disciplina {
      */
     public void cadastraNota(int nota, double valorNota){
         if (nota >= 1 && nota <= notas.length) {
-            // nota - 1 representa o indice do array.
+            // nota - 1 representa o indice do array
             notas[nota-1] = valorNota;
         }
     }
@@ -105,7 +105,7 @@ public class Disciplina {
             }
             return somaNotas / notas.length;
         }
-        // evita a divisão por 0.
+        // evita a divisão por 0
         if (somaPesos == 0){
             return 0.0;
         }
